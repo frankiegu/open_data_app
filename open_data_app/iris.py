@@ -9,19 +9,44 @@ import numpy as np
 
 def main():
     iris = datasets.load_iris()
-    colnames = ["sepal length",
-        "sepal width",
-        "petal length",
-        "petal width",
-        "class"]
+    colnames = ["sepal length","sepal width","petal length",
+        "petal width","class"]
+
+    baseinfo = {
+        "name":"iris",
+        "name_cn":"鸢尾花品种预测",
+        "sample_name":"花样"
+    }
+
+    features = {
+        "sepal length":{
+            "process":None,
+            "describe":"萼片长度(cm)",
+            },
+        "sepal width":{
+            "process":None,
+            "describe":"萼片宽度(cm)"
+            },
+        "petal length":{
+            "process":None,
+            "describe":"花瓣长度(cm)"
+            },
+        "petal width":{
+            "process":None,
+            "describe":"花瓣宽度(cm)"
+            },
+    }
+    target = {"class":{
+        'process':None,
+        'describe':'花种'}
+        }
     Xy = np.vstack([iris.data.T,iris.target.T]).T
 
     data = {i:dict(zip(colnames,x)) for i,x in enumerate(Xy)}
-    features = {x:{'process':None,'describe':None}  for x in ["sepal length", "sepal width", "petal length", "petal width",]}
-    target = {x:{'process':None,'describe':None}  for x in ["class",]}
+    
     save_fp = 'open_data_app/static/model/iris.pkl'
     clf = GaussianNB()
-    clf = modeling.modeling(clf,data,features,target,save_fp)
+    clf = modeling.modeling(clf,data,features,target,baseinfo,save_fp)
 
 if __name__ == '__main__':
     main()

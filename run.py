@@ -1,3 +1,8 @@
 ﻿from open_data_app.route import app
-import config
-app.run('0.0.0.0',port=7000,debug=config.DEBUG)
+# import config
+
+from flask_debugtoolbar import DebugToolbarExtension
+
+toolbar = DebugToolbarExtension(app)
+
+app.run('0.0.0.0',port=7000)

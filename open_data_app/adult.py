@@ -21,13 +21,19 @@ def main():
     lb = preprocessing.LabelBinarizer()
     le = preprocessing.LabelEncoder()
 
+    baseinfo = {
+        "name":"adult",
+        "name_cn":"美国致富秘籍",
+        "sample_name":"美国人"
+    }
+
     features = {
         'sex':{
-            'describe':None,
+            'describe':"性别",
             'process':lb,
             },
         'education':{
-            'describe':None,
+            'describe':"教育水平",
             'process':lb,
         }
     }
@@ -43,7 +49,7 @@ def main():
     # y_transform = le.fit_transform(y)
     # 需要转换y为数值
     clf = DecisionTreeClassifier()
-    clf = modeling.modeling(clf,data,features,target,save_fp)
+    clf = modeling.modeling(clf,data,features,target,baseinfo,save_fp)
 
 if __name__ == '__main__':
     result = main()

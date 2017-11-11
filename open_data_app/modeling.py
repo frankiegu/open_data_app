@@ -18,18 +18,19 @@ from sklearn.model_selection import cross_val_score
 #     return data
 
 
-def modeling(clf,data,features,target,save_fp):
-    result = {
+def modeling(clf,data,features,target,baseinfo,save_fp):
+    model = {
         'features':features,
-        'target':target,}
+        'target':target,
+        'baseinfo':baseinfo}
 
     X = []
     
     for x in features:
         arr = np.array([data[i][x] for i in data])
-        if result['features'][x]['process']:
-            result['features'][x]['process'].fit(arr)
-            transformed_values = result['features'][x]['process'].transform(arr)
+        if model['features'][x]['process']:
+            model['features'][x]['process'].fit(arr)
+            transformed_values = model['features'][x]['process'].transform(arr)
             X.append(transformed_values)
         else:
             X.append(arr)
@@ -38,37 +39,32 @@ def modeling(clf,data,features,target,save_fp):
 
     for x in target:
         arr = np.array([data[i][x] for i in data])
-        if result['target'][x]['process']:
-            result['target'][x]['process'].fit(arr)
-            transformed_values = result['target'][x]['process'].transform(arr)
+        if model['target'][x]['process']:
+            model['target'][x]['process'].fit(arr)
+            transformed_values = model['target'][x]['process'].transform(arr)
             y = transformed_values
         else:
             y = arr
         break
 
     scores = cross_val_score(clf,X,y, cv=5)
-    result.update({
+    model.update({
         'score':{
             'mean':scores.mean(),
             'std':scores.std()
             },
-        'model':clf.fit(X,y)
+        'clf':clf.fit(X,y)
     }
     )
     with open(save_fp,'wb') as f:
-        pickle.dump(result,f)
-    return result
+        pickle.dump(model,f)
+    return model
     
-
-def save(clf,save_fp,score):
-    data = {"model":clf,"score":score}
-    with open(save_fp,'wb') as f:
-        pickle.dump(data,f)
 
 def read(save_fp):
     with open(save_fp,'rb') as f:
         model = pickle.load(f)
-    return model
+    return clf
 
 # X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target)
 # gnb.score(X_test,y_test)
