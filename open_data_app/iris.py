@@ -22,18 +22,22 @@ def main():
         "sepal length":{
             "process":None,
             "describe":"萼片长度(cm)",
+            'type':'numerical',
             },
         "sepal width":{
             "process":None,
-            "describe":"萼片宽度(cm)"
+            "describe":"萼片宽度(cm)",
+            'type':'numerical',
             },
         "petal length":{
             "process":None,
-            "describe":"花瓣长度(cm)"
+            "describe":"花瓣长度(cm)",
+            'type':'numerical',
             },
         "petal width":{
             "process":None,
-            "describe":"花瓣宽度(cm)"
+            "describe":"花瓣宽度(cm)",
+            'type':'numerical',
             },
     }
     target = {"class":{

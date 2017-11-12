@@ -18,6 +18,7 @@ from sklearn.model_selection import cross_val_score
 #     return data
 
 
+
 def modeling(clf,data,features,target,baseinfo,save_fp):
     model = {
         'features':features,
@@ -34,6 +35,10 @@ def modeling(clf,data,features,target,baseinfo,save_fp):
             X.append(transformed_values)
         else:
             X.append(arr)
+        if model['features'][x]['type'] == "categorical":
+            model['features'][x]['fileds'] = list(set(arr))
+        else:
+            model['features'][x]['fileds'] = [arr.mean()]
 
     X = np.vstack([x.T for x in X]).T
 

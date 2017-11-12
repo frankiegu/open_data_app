@@ -23,24 +23,26 @@ def main():
 
     baseinfo = {
         "name":"adult",
-        "name_cn":"美国致富秘籍",
+        "name_cn":"美国人收入预测",
         "sample_name":"美国人"
     }
 
     features = {
         'sex':{
             'describe':"性别",
-            'process':lb,
+            'process':preprocessing.LabelBinarizer(),
+            'type':'categorical',
             },
         'education':{
             'describe':"教育水平",
-            'process':lb,
+            'process':preprocessing.LabelBinarizer(),
+            'type':'categorical',
         }
     }
 
     target = {
          'rich':{
-            'describe':None,
+            'describe':"年收入大于50K美元",
             'process':le
         }
     }
