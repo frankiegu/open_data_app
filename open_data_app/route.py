@@ -15,7 +15,7 @@ def index():
         with open(fp,'rb') as f:
             model = pickle.load(f)
         models.append(model)
-    print(models)
+    # print(models)
     return render_template('index.html',models=models)
 
 @app.route('/api/predict/<model_name>',methods=['GET','POST'])
