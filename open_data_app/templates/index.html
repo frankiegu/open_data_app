@@ -60,7 +60,8 @@
 <div class="ui grid model" id="{{model['baseinfo']['name']}}">
     <div class="six wide column">
         <div class="ui segment" >
-            <h2>{{model['baseinfo']['name_cn']}}</h2>
+            <h2>{{model['baseinfo']['name_cn']}}({{'{:.1%}'.format(model['score']['mean'])}})</h2>
+            
             <p>请填入新的{{model['baseinfo']['sample_name']}}数据</p>
             <div class="ui form basic_form">
             

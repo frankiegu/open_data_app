@@ -36,8 +36,8 @@ def predict(model_name):
         sample.append(value)
 
     sample = np.vstack([x.T for x in sample]).T
-
-    
+    # pdb.set_trace()
+    print(sample)
     # sample = [float(x) for x in sample]
     result = dict(
         prediction = model['clf'].predict(sample).tolist(),
