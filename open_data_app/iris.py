@@ -3,6 +3,7 @@
 # 20171111
 from sklearn import datasets
 from sklearn.naive_bayes import GaussianNB
+from collections import OrderedDict
 # from open_data_app import modeling
 import modeling
 import numpy as np
@@ -18,7 +19,7 @@ def main():
         "sample_name":"花样"
     }
 
-    features = {
+    features = OrderedDict({
         "sepal length":{
             "process":None,
             "describe":"萼片长度(cm)",
@@ -39,7 +40,7 @@ def main():
             "describe":"花瓣宽度(cm)",
             'type':'numerical',
             },
-    }
+    })
     target = {"class":{
         'process':None,
         'describe':'花种'}

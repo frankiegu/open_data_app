@@ -26,8 +26,9 @@ def predict(model_name):
     with open(fp,'rb') as f:
         model = pickle.load(f)
     # sample = [float(data[x]) for x in data]
+
     sample = []
-    for x in data:
+    for x in model['features']:
         process = model['features'][x]['process']
         value = np.array([data[x]])
         if process:

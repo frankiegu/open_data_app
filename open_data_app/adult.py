@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from sklearn import preprocessing
 from sklearn.tree import DecisionTreeClassifier
+from collections import OrderedDict
 import pdb
 import modeling
 
@@ -27,7 +28,7 @@ def main():
         "sample_name":"美国人"
     }
 
-    features = {
+    features = OrderedDict({
         'sex':{
             'describe':"性别",
             'process':preprocessing.LabelBinarizer(),
@@ -38,7 +39,7 @@ def main():
             'process':preprocessing.LabelBinarizer(),
             'type':'categorical',
         }
-    }
+    })
 
     target = {
          'rich':{
