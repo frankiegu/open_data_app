@@ -7,10 +7,16 @@
     <script type="text/javascript" src='{{url_for("static",filename="semantic.min.js")}}'></script>
     <style type="text/css">
 
-        .result {
+        #myclass .result {
             display: none;
 
         }
+
+        #myclass .result.active{
+            display: inline-block;
+
+        }
+
 
         #myclass .menu {
             margin-bottom:0;
@@ -36,11 +42,6 @@
         }
 
 
-/*
-        .basic_form button {
-            position: absolute;
-            right: 1px;
-        }*/
     </style>
 </head>
 <body id="myclass">
@@ -127,6 +128,7 @@
             }
         )
     });
+    
     $( document ).ready(function(){
         $(".menu .item").first().addClass('active');
         $(".model").first().addClass('active');

@@ -21,7 +21,6 @@ def index():
 @app.route('/api/predict/<model_name>',methods=['GET','POST'])
 def predict(model_name):
     # pdb.set_trace()
-    print(model_name)
     data = request.json['data']
     fp = 'open_data_app/static/model/{}.pkl'.format(model_name)
     with open(fp,'rb') as f:
@@ -39,12 +38,10 @@ def predict(model_name):
 
     
     # sample = [float(x) for x in sample]
-    print(sample)
     result = dict(
         prediction = model['clf'].predict(sample).tolist(),
         proba =  '{:.1%}'.format(model['clf'].predict_proba(sample).max())
         )
     # pdb.set_trace()
-    print(result)
     return jsonify(result)
 
